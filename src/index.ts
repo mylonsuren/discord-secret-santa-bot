@@ -1,8 +1,6 @@
 import secretSantaGenerator from "./secretSantaGenerator";
 import sendToDiscord from "./sendToDiscord";
 
-export const DEBUG = true;
-
 /**
  * Main script for generating secret santa draw
  */

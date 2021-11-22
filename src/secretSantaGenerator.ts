@@ -4,6 +4,7 @@
 
 import * as fs from "fs";
 import { Member } from "../interfaces/members";
+import { YEAR } from "./config";
 import _ from "lodash";
 import members from "../../data/members.json";
 
@@ -21,9 +22,9 @@ const matches: Record<string, string> = {};
  */
 const updateValidlist = (excludeName: string) => {
 	memberNames.forEach((member) => {
-		const t = _.differenceWith(validlist[member], [excludeName]);
+		const newValidlist = _.differenceWith(validlist[member], [excludeName]);
 
-		validlist[member] = t;
+		validlist[member] = newValidlist;
 	});
 };
 
@@ -80,7 +81,7 @@ const drawNames = (): boolean => {
  */
 const saveDrawnNames = (): boolean => {
 	_.forOwn(members, (member: Member) => {
-		member.secret_santa["2022"] = matches[member.name];
+		member.secret_santa[YEAR] = matches[member.name];
 	});
 
 	try {

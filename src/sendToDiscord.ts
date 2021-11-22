@@ -2,9 +2,8 @@
  * This module sends the drawn names over Discord to each individual
  * user.
  */
-
+import { BUDGET, DEBUG, YEAR } from "./config";
 import { Client, Intents, MessageEmbed, User } from "discord.js";
-import { DEBUG } from "./index";
 import { Member } from "../interfaces/members";
 import _ from "lodash";
 import auth from "../../data/auth.json";
@@ -36,9 +35,9 @@ const fetchUser = async (member: Member): Promise<User> => {
  */
 const sendMessage = async (user: User, drawnName: string) => {
 	const SANTA_EMBED = new MessageEmbed()
-		.setTitle("Turtles Secret Santa 2021")
+		.setTitle(`Turtles Secret Santa ${YEAR}`)
 		.setColor(0xb3000c)
-		.setDescription(`You drew **${drawnName}**. \nBudget is $75.`);
+		.setDescription(`You drew **${drawnName}**. \nBudget is $${BUDGET}.`);
 
 	await user.send({ embeds: [SANTA_EMBED] });
 	console.log(`DISCORD: Message sent to ${user.username}...`);
@@ -57,7 +56,7 @@ const sendSecretSanta = async () => {
 	_.forOwn(members, (member: Member) => li_members.push(member));
 
 	li_members.forEach(async (member: Member) => {
-		const ss_name = member.secret_santa["2019"].toUpperCase();
+		const ss_name = member.secret_santa[YEAR].toUpperCase();
 		const user = await fetchUser(member);
 
 		if (DEBUG) await sendMessage(MYLON_USER, ss_name);
