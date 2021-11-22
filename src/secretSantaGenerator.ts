@@ -5,7 +5,7 @@
 import * as fs from "fs";
 import { Member } from "../interfaces/members";
 import _ from "lodash";
-import members from "../data/members.json";
+import members from "../../data/members.json";
 
 type FilteredList = Record<string, Array<string>>;
 

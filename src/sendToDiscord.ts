@@ -7,8 +7,8 @@ import { Client, Intents, MessageEmbed, User } from "discord.js";
 import { DEBUG } from "./index";
 import { Member } from "../interfaces/members";
 import _ from "lodash";
-import auth from "../data/auth.json";
-import members from "../data/members.json";
+import auth from "../../data/auth.json";
+import members from "../../data/members.json";
 
 // Discord Client
 const client = new Client({
