@@ -4,7 +4,7 @@
 
 import * as fs from "fs";
 import { Member } from "../interfaces/members";
-import { YEAR } from "./config";
+import { WRITE_YEAR } from "./config";
 import _ from "lodash";
 import members from "../../data/members.json";
 
@@ -81,11 +81,11 @@ const drawNames = (): boolean => {
  */
 const saveDrawnNames = (): boolean => {
 	_.forOwn(members, (member: Member) => {
-		member.secret_santa[YEAR] = matches[member.name];
+		member.secret_santa[WRITE_YEAR] = matches[member.name];
 	});
 
 	try {
-		fs.writeFileSync("./data/members.json", JSON.stringify(members));
+		fs.writeFileSync(".././data/members.json", JSON.stringify(members));
 	} catch (e) {
 		console.error(e);
 		return false;
